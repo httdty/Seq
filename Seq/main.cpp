@@ -103,6 +103,63 @@ void DelX_1(SqList &L, ElemType x){
 }
 
 
+void DelX_2(SqList &L, ElemType x){
+    /*
+     * 遍历顺序表，记录x的个数为k，对于非x的元素，L.data[i - k]=L.data[i]
+     */
+    int k = 0, i = 0;
+    while (i < L.length){
+        if (L.data[i] == x)  // record number == x
+            k ++;
+        else
+            L.data[i - k] = L.data[i];  // L.data[i - k] = L.data[i]
+        i++;
+    }
+    L.length = L.length - k;  // set new length
+}
+
+bool DelST(SqList &L, ElemType s, ElemType t){
+    /*
+     * 分两次循环完成，虽然代码组织不好但是功能可以完成
+     */
+    if (!L.length || (s >= t))  // not sat
+        return false;
+    int mark = L.length, i = 0;
+    for (; i<L.length; i++) {  // find the first pos and the last pos
+        if (L.data[i] >= s && mark == L.length)
+            mark = i;
+        if (L.data[i] > t)
+            break;
+    }
+    int j = 0;
+    for (; j<i-mark; j++){  // move the element
+        if (i < L.length)
+            L.data[mark + j] = L.data[i];
+        else
+            break;
+    }
+    L.length -= j;  // update the length
+    return true;
+}
+
+bool DelST_1(SqList &L, ElemType s, ElemType t){
+    /*
+     * 充分利用循环语句，在循环语句中使用多重判断和多重改变，又充分利用循环变量作为其他值的数据来源
+     */
+    int i, j;
+    if (s >= t || L.length == 0)  // not sat
+        return false;
+    for (i=0; i<L.length&&L.data[i]<s; i++);  // find start
+    if (i >= L.length)
+        return false;
+    for (j=i; j<L.length&&L.data[j]<=t; j++);  // find end
+    for (; j<L.length;i++, j++)  // move data
+        L.data[i] = L.data[j];
+    L.length = j;  // set new length
+    return true;
+}
+
+
 int main() {
     cout << "Hello, World!" << endl;
     return 0;
