@@ -159,6 +159,169 @@ bool DelST_1(SqList &L, ElemType s, ElemType t){
     return true;
 }
 
+bool DelSTN(SqList &L, ElemType s, ElemType t){
+    /*
+     * 每找到一个不合适的值就将表尾的元素放入该位置进行替换，同时表长度减
+     * 缺点是破坏了表中元素的相对位置
+     */
+    if (!L.length || s >= t)  // not sat
+        return false;
+    for (int i=0; i<L.length; i++){
+        if (L.data[i] >= s && L.data[i] <= t){  // find the number in [s, t]
+            L.data[i] = L.data[L.length - 1];  // set with the last number
+            L.length --;
+        }
+    }
+    return true;
+}
+
+
+bool DelSTN_1(SqList &L, ElemType s, ElemType t){
+    /*
+     * 删除表中所有大于等于s小于等于t的元素
+     * 保持了原来线性表的相对顺序不变
+     */
+    if (!L.length && s >= t)  // not sat
+        return false;
+    int k = 0, i = 0;
+    for (; i<L.length; i++){
+        if (L.data[i] >= s || L.data[i] <= t)  // count the sat number
+            k ++;
+        else
+            L.data[i - k] = L.data[i];  // set the data[i - k] = data[i]
+    }
+    L.length -= k;
+    return true;
+}
+
+
+bool DisDel(SqList &L){
+    /*
+     * 删除有序顺序表中重复的元素
+     * 记录上一次的值并设定一个偏移量，循环偏移完成
+     */
+    if (!L.length)
+        return false;
+    int k=0, i;
+    ElemType last = L.data[0];
+    for (i = 1; i < L.length; i++){
+        if (last == L.data[i]){  // same element, k++
+            k ++;
+        }
+        else{
+            L.data[i - k] = L.data[i];  // different element, data[i - k] = data[i]
+        }
+        last = L.data[i];
+    }
+    L.length -= k;
+    return true;
+}
+
+
+bool DisDel_1(SqList &L){
+    /*
+     * 删除有序顺序表中重复的元素
+     * j增长速度远快于i，故对前面元素的修改不会影响到后面的效果，即重置data[i]即可
+     */
+    if (L.length == 0)
+        return false;
+    int i, j;
+    for (i=0, j=1; j < L.length; j++){
+        if (L.data[j] != L.data[i])  // new value appeared, add into data[i++]
+            L.data[++i] = L.data[j];
+    }
+    L.length = i + 1;  // set new length = i + 1
+    return true;
+}
+
+
+bool Merge(SqList a, SqList b, SqList &c){
+    /*
+     * 两个顺序表合成一个
+     * 类似归并排序的合并操作，注意不要发生数组越界或者丢下一部分没有合并
+     * 可以增加一个局部变量k，减少c.length++的操作数量
+     */
+    if (a.length + b.length > MaxSize)
+        return false;
+    int i = 0, j = 0;
+    while (i < a.length && j < b.length) {  // point move and set the smaller value into c
+        c.length++;
+        if (a.data[i] < b.data[j]) {
+            c.data[c.length - 1] = a.data[i];
+            i++;
+        } else {
+            c.data[i + j] = b.data[j];
+            j++;
+        }
+    }
+    while (i < a.length){  // set the spare value into c
+        c.length ++;
+        c.data[c.length - 1] = a.data[i];
+    }
+    while  (j < b.length){
+        c.length ++;
+        c.data[c.length - 1] = b.data[j];
+    }
+    return true;
+}
+
+
+bool ReverseArray(ElemType A[], int s, int t, int arraySize){
+    /*
+     * 数组逆序，为交换两个数组块准备
+     */
+    if (s >= t || t >= arraySize)
+        return false;
+    ElemType temp;
+    int mid = (s + t) / 2;  // get mid
+    for (int i = 0; i <= mid; i++){  // exchange the A[i] and A[t - i]
+        temp = A[i];
+        A[i] = A[t - i];
+        A[t - i] = temp;
+    }
+    return true;
+}
+
+
+void ExchangeList(ElemType A[], int n, int m, int arraySize){
+    /*
+     * 交换两个数组块的顺序
+     * 逆序总数组-逆序前n个-逆序后m个
+     */
+    ReverseArray(A, 0, n + m - 1, arraySize);
+    ReverseArray(A, 0, n - 1, arraySize);
+    ReverseArray(A, n, n + m - 1, arraySize);
+}
+
+
+void FindExchangeInsert(ElemType A[], ElemType searchNum, int arraySize){
+    /*
+     * 在递增顺序表中找到目标值，找到则将该值与后继节点交换，找不到则在正确位置插入目标值
+     * 使用二分查找，充分利用low和high的性质判断是否成功找到元素值，并据此获得移动的长度
+     */
+    int low = 0, high = arraySize - 1, mid = 0;
+    while (low <= high){  // binary search
+        mid = (low + high) / 2;
+        if (A[mid] == searchNum)
+            break;
+        else if (A[mid] < searchNum)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+    if (A[mid] == searchNum && mid < arraySize - 1){  // A[mid] is the number, exchange value if mid is not the last num
+        ElemType temp = A[mid];
+        A[mid] = A[mid + 1];
+        A[mid + 1] = temp;
+    }
+    if (low > high){  // 404, insert searchValue into A[low]
+        for (int i = arraySize - 1; i > high; i --){
+            A[i + 1] = A[i];
+        }
+        A[low] = searchNum;
+    }
+}
+
 
 int main() {
     cout << "Hello, World!" << endl;

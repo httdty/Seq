@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="2d1026d0-6342-4ff7-823f-cff01c29bacb" name="httdty" url="http://47.100.234.58">
-        <fileTransfer host="47.100.234.58" port="22" rootFolder="/home/test" accessType="SFTP">
+      <webServer id="2d1026d0-6342-4ff7-823f-cff01c29bacb" name="httdty" url="http://www.httdty.top">
+        <fileTransfer host="www.httdty.top" port="22" rootFolder="/home/test" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
