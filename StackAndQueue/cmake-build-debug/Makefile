@@ -149,6 +149,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles\StackAndQueue.dir\build.make CMakeFiles/StackAndQueue.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+queue.obj: queue.cpp.obj
+
+.PHONY : queue.obj
+
+# target to build an object file
+queue.cpp.obj:
+	$(MAKE) -f CMakeFiles\StackAndQueue.dir\build.make CMakeFiles/StackAndQueue.dir/queue.cpp.obj
+.PHONY : queue.cpp.obj
+
+queue.i: queue.cpp.i
+
+.PHONY : queue.i
+
+# target to preprocess a source file
+queue.cpp.i:
+	$(MAKE) -f CMakeFiles\StackAndQueue.dir\build.make CMakeFiles/StackAndQueue.dir/queue.cpp.i
+.PHONY : queue.cpp.i
+
+queue.s: queue.cpp.s
+
+.PHONY : queue.s
+
+# target to generate assembly for a file
+queue.cpp.s:
+	$(MAKE) -f CMakeFiles\StackAndQueue.dir\build.make CMakeFiles/StackAndQueue.dir/queue.cpp.s
+.PHONY : queue.cpp.s
+
 stack.obj: stack.cpp.obj
 
 .PHONY : stack.obj
@@ -188,6 +215,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... queue.obj
+	@echo ... queue.i
+	@echo ... queue.s
 	@echo ... stack.obj
 	@echo ... stack.i
 	@echo ... stack.s

@@ -28,7 +28,7 @@ typedef struct DNode {
      */
     ElemType data;
     struct DNode *prior, *next;
-} DNodel, *DLinkList;
+} DNode, *DLinkList;
 
 typedef struct SNode {
     /*

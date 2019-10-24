@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/44797/CLionProjects/DataStruct/StackAndQueue/main.cpp" "C:/Users/44797/CLionProjects/DataStruct/StackAndQueue/cmake-build-debug/CMakeFiles/StackAndQueue.dir/main.cpp.obj"
+  "C:/Users/44797/CLionProjects/DataStruct/StackAndQueue/queue.cpp" "C:/Users/44797/CLionProjects/DataStruct/StackAndQueue/cmake-build-debug/CMakeFiles/StackAndQueue.dir/queue.cpp.obj"
   "C:/Users/44797/CLionProjects/DataStruct/StackAndQueue/stack.cpp" "C:/Users/44797/CLionProjects/DataStruct/StackAndQueue/cmake-build-debug/CMakeFiles/StackAndQueue.dir/stack.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

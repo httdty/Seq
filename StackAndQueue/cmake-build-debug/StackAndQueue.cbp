@@ -85,6 +85,9 @@
 		<Unit filename="C:/Users/44797/CLionProjects/DataStruct/StackAndQueue/main.cpp">
 			<Option target="StackAndQueue"/>
 		</Unit>
+		<Unit filename="C:/Users/44797/CLionProjects/DataStruct/StackAndQueue/queue.cpp">
+			<Option target="StackAndQueue"/>
+		</Unit>
 		<Unit filename="C:/Users/44797/CLionProjects/DataStruct/StackAndQueue/stack.cpp">
 			<Option target="StackAndQueue"/>
 		</Unit>

@@ -170,4 +170,5 @@ int SharePop(int i, ElemType &x) {
                 return 1;
             }
     }
+    return 0;
 }

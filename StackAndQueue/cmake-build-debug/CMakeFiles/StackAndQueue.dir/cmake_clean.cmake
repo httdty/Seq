@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/StackAndQueue.dir/main.cpp.obj"
+  "CMakeFiles/StackAndQueue.dir/queue.cpp.obj"
   "CMakeFiles/StackAndQueue.dir/stack.cpp.obj"
   "StackAndQueue.exe"
   "StackAndQueue.exe.manifest"
